@@ -1,14 +1,30 @@
-FROM node:18-alpine
+#FROM node:18-alpine
+#
+#WORKDIR /app
+#
+#COPY package.json .
+#COPY package-lock.json .
+#
+#RUN npm ci --production
+#
+#COPY . .
+#
+#EXPOSE 3000
+#
+#CMD ["npm", "start"]
 
-WORKDIR /app
+#---------------------------------------------------------------------------
+# Dockefile to build Docker Image with Apache WebServer running on Ubuntu
+# Copyleft (c) by Denis Astahov
+#---------------------------------------------------------------------------
 
-COPY package.json .
-COPY package-lock.json .
+FROM ubuntu:21.04
 
-RUN npm ci --production
+RUN apt-get -y update
+RUN apt-get -y install apache2
 
-COPY . .
+RUN echo 'Docker Image on CloudRun of David Askarov!<br>'   > /var/www/html/index.html
+RUN echo '<b><font color="magenta">Version 1.1</font></b>' >> /var/www/html/index.html
 
-EXPOSE 3000
-
-CMD ["npm", "start"]
+CMD ["/usr/sbin/apache2ctl", "-D","FOREGROUND"]
+EXPOSE 80
