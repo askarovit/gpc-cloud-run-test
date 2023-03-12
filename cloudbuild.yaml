@@ -29,8 +29,8 @@ images: # Display the image in the build results - Build Artifacts
 # us-central1-docker.pkg.dev/managment-380417/test-prod-repo
 substitutions:
   _SERVICE_IMAGE    : us-central1-docker.pkg.dev/managment-380417/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}:${SHORT_SHA}
-  _SERVICE_REGION   : us-central1
-  _SERVICE_PROJECT  : prod-test-380218
-  _SERVICE_NAME     : my-prod-test
+  _SERVICE_REGION   : us-central1 #
+  _SERVICE_PROJECT  : PROD-TEST #
+  _SERVICE_NAME     : my-prod-test #
   _DOCKER_REGISTRY  : test-prod-repo
   _DOCKER_IMAGENAME : myapp-prod-test
