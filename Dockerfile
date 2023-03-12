@@ -1,17 +1,19 @@
-FROM ubuntu:20.04
+FROM node:18-alpine
 
-# Установка Apache и необходимых пакетов
-RUN apt-get update && \
-    apt-get install -y apache2 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+WORKDIR /app
 
-# Копирование конфигурационных файлов Apache в образ
-COPY apache2.conf /etc/apache2/apache2.conf
-COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY package.json .
+COPY package-lock.json .
 
-# Экспонируем порт 80
-EXPOSE 80
+RUN npm ci --production
 
-# Команда запуска Apache
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+COPY . .
+
+RUN npm install --only=prod && \
+    npm cache clean --force && \
+    rm -rf /tmp/*
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+
