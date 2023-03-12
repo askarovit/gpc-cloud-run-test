@@ -13,7 +13,7 @@ RUN npm install --only=prod && \
     npm cache clean --force && \
     rm -rf /tmp/*
 
-EXPOSE 3000
+EXPOSE 8080
 
 CMD ["npm", "start"]
 
