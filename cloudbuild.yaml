@@ -1,6 +1,3 @@
-#-----------------------------------------
-# CloudBuild Pipeline for Prod CloudRun
-#-----------------------------------------
 steps:
   # Docker Build Image
   - name: gcr.io/cloud-builders/docker
@@ -26,7 +23,7 @@ steps:
 
 images: # Display the image in the build results - Build Artifacts
   - $_SERVICE_IMAGE
-# us-central1-docker.pkg.dev/managment-380417/test-prod-repo
+
 substitutions:
   _SERVICE_IMAGE    : us-central1-docker.pkg.dev/managment-380417/${_DOCKER_REGISTRY}/${_DOCKER_IMAGENAME}:${SHORT_SHA}
   _SERVICE_REGION   : us-central1 #

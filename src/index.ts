@@ -4,7 +4,8 @@ const app = express()
 
 app.get('/', (req: Request, res: Response) => {
     res.status(200).json({
-        message: 'Hello World!'
+        date: new Date(),
+        message: 'It works'
     })
 })
 
